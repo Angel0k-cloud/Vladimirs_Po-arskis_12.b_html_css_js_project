@@ -1,1 +1,4 @@
-# Vladimirs_Po-arskis_12.b_html_css_js_project
+# Tīmekļa lapa HTML, CSS un JavaScript pamatu apguvei
+
+Vienkāršs projekts ar HTML struktūru, CSS noformējumu un JavaScript pieslēgumu.
+Izmantots mācību nolūkiem.
