@@ -10,7 +10,6 @@
 
 <header>
   <h1>HTML, CSS un JavaScript projekts</h1>
-  <p class="subtitle">3. darba lapa — funkcijas un nosacījumi</p>
 </header>
 
 <main>
@@ -21,6 +20,30 @@
       Avots:
       <a href="https://en.wikipedia.org/wiki/HTML" target="_blank" rel="noopener">Wikipedia – HTML</a>
     </p>
+  </section>
+
+  <section class="card">
+    <h2>Kontaktforma</h2>
+    <p class="hint">Aizpildi formu un nospied “Iesniegt”. Kļūdas gadījumā parādīsies skaidrs paziņojums.</p>
+
+    <form id="contactForm" novalidate>
+      <div class="field">
+        <label for="fullName">Vārds un uzvārds</label>
+        <input id="fullName" name="fullName" type="text" placeholder="Piemēram: Jānis Bērziņš">
+      </div>
+
+      <div class="field">
+        <label for="email">E-pasts</label>
+        <input id="email" name="email" type="email" placeholder="piemers@epasts.lv">
+      </div>
+
+      <div class="formRow">
+        <button id="btnFormSubmit" type="submit">Iesniegt</button>
+        <span id="formMsg" class="formMsg" aria-live="polite"></span>
+      </div>
+
+      <div id="formErrors" class="formErrors" aria-live="polite"></div>
+    </form>
   </section>
 
   <section class="card">
