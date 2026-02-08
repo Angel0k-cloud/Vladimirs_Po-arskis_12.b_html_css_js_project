@@ -2,25 +2,59 @@
 <html lang="lv">
 <head>
     <meta charset="UTF-8">
-    <title>Mana pirmā tīmekļa lapa</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mana tīmekļa lapa — interaktivitāte</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
     <h1>HTML, CSS un JavaScript projekts</h1>
+    <p class="subtitle">2. darba lapa — notikumi (Events)</p>
 </header>
 
 <main>
-    <p>
-        HTML (HyperText Markup Language) ir standarta iezīmēšanas valoda tīmekļa lapu veidošanai.
-        Avots:
-        <a href="https://en.wikipedia.org/wiki/HTML" target="_blank">
-            Wikipedia – HTML
-        </a>
-    </p>
+    <section class="card">
+        <h2>Kas ir HTML?</h2>
+        <p>
+            HTML (HyperText Markup Language) ir standarta iezīmēšanas valoda tīmekļa lapu veidošanai.
+            Avots:
+            <a href="https://en.wikipedia.org/wiki/HTML" target="_blank" rel="noopener">
+                Wikipedia – HTML
+            </a>
+        </p>
+    </section>
 
-    <button id="btn">Noklikšķini mani</button>
+    <section class="card">
+        <h2>Lietotāja atsauksme</h2>
+
+        <label for="feedback">Ievadi īsu atsauksmi:</label>
+        <textarea id="feedback" rows="4" placeholder="Piemēram: Man patika šī lapa..."></textarea>
+
+        <div class="meta">
+            <span id="charCount">0</span> / <span id="charLimit">200</span> simboli
+        </div>
+
+        <p class="previewTitle">Priekšskatījums:</p>
+        <div id="preview" class="preview">Šeit parādīsies tavs teksts.</div>
+
+        <div class="submitRow">
+            <button id="btnSubmit" type="button">Nosūtīt atsauksmi</button>
+            <span id="submitMsg" class="submitMsg" aria-live="polite"></span>
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>Iesūtītās atsauksmes</h2>
+        <ul id="feedbackList" class="feedbackList">
+            <li class="empty">Pagaidām nav atsauksmju.</li>
+        </ul>
+    </section>
+
+    <section class="card actions">
+        <button id="btnTheme" type="button">Pārslēgt tumšo režīmu</button>
+        <span id="themeStatus" class="status">Gaišais režīms</span>
+    </section>
 </main>
 
 <footer>
