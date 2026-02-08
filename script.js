@@ -12,6 +12,12 @@ const btnSubmit = document.getElementById("btnSubmit");
 const submitMsg = document.getElementById("submitMsg");
 const feedbackList = document.getElementById("feedbackList");
 
+const contactForm = document.getElementById("contactForm");
+const fullName = document.getElementById("fullName");
+const email = document.getElementById("email");
+const formMsg = document.getElementById("formMsg");
+const formErrors = document.getElementById("formErrors");
+
 const CHAR_LIMIT = 200;
 charLimitEl.textContent = String(CHAR_LIMIT);
 
@@ -29,11 +35,76 @@ function updatePreviewAndCount() {
   }
 }
 
-function setSubmitMessage(message, type) {
-  submitMsg.className = "submitMsg";
-  submitMsg.textContent = message;
-  if (type === "ok") submitMsg.classList.add("ok");
-  if (type === "err") submitMsg.classList.add("err");
+function setMessage(el, message, type) {
+  el.className = el.id === "submitMsg" ? "submitMsg" : "formMsg";
+  el.textContent = message;
+  if (type === "ok") el.classList.add("ok");
+  if (type === "err") el.classList.add("err");
+}
+
+function clearErrors() {
+  formErrors.innerHTML = "";
+}
+
+function renderErrors(errors) {
+  if (errors.length === 0) {
+    clearErrors();
+    return;
+  }
+  const ul = document.createElement("ul");
+  errors.forEach(function (e) {
+    const li = document.createElement("li");
+    li.textContent = e;
+    ul.appendChild(li);
+  });
+  formErrors.innerHTML = "";
+  formErrors.appendChild(ul);
+}
+
+function isValidEmail(value) {
+  const v = value.trim();
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return re.test(v);
+}
+
+function validateForm(nameValue, emailValue) {
+  const errors = [];
+  const nameTrim = nameValue.trim();
+  const emailTrim = emailValue.trim();
+
+  if (nameTrim.length === 0) {
+    errors.push("Lauks “Vārds un uzvārds” nedrīkst būt tukšs.");
+  } else if (nameTrim.length < 3) {
+    errors.push("Vārdam un uzvārdam jābūt vismaz 3 simboliem.");
+  }
+
+  if (emailTrim.length === 0) {
+    errors.push("Lauks “E-pasts” nedrīkst būt tukšs.");
+  } else if (!isValidEmail(emailTrim)) {
+    errors.push("E-pasta formāts nav pareizs (piemērs: vards@epasts.lv).");
+  }
+
+  return errors;
+}
+
+function handleFormSubmit(event) {
+  event.preventDefault();
+
+  setMessage(formMsg, "", "");
+  clearErrors();
+
+  const errors = validateForm(fullName.value, email.value);
+
+  if (errors.length > 0) {
+    renderErrors(errors);
+    setMessage(formMsg, "Forma netika iesniegta. Lūdzu, izlabo kļūdas.", "err");
+    return;
+  } else {
+    renderErrors([]);
+    setMessage(formMsg, "Forma veiksmīgi iesniegta!", "ok");
+    fullName.value = "";
+    email.value = "";
+  }
 }
 
 function validateFeedback(text) {
@@ -71,9 +142,9 @@ function handleSubmit(text) {
     addFeedbackToList(text);
     feedback.value = "";
     updatePreviewAndCount();
-    setSubmitMessage(result.message, "ok");
+    setMessage(submitMsg, result.message, "ok");
   } else {
-    setSubmitMessage(result.message, "err");
+    setMessage(submitMsg, result.message, "err");
   }
 }
 
@@ -88,5 +159,7 @@ btnTheme.addEventListener("click", toggleTheme);
 btnSubmit.addEventListener("click", function () {
   handleSubmit(feedback.value.trim());
 });
+
+contactForm.addEventListener("submit", handleFormSubmit);
 
 updatePreviewAndCount();
