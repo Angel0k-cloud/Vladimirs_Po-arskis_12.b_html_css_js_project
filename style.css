@@ -36,6 +36,11 @@ main {
   margin-top: 0;
 }
 
+.hint {
+  margin: 0 0 12px;
+  opacity: 0.85;
+}
+
 label {
   display: block;
   margin: 10px 0 6px;
@@ -55,6 +60,58 @@ textarea:focus {
   outline: none;
   border-color: #3498db;
   box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.18);
+}
+
+input {
+  width: 100%;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+input:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.18);
+}
+
+.field {
+  margin-bottom: 10px;
+}
+
+.formRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.formMsg {
+  font-size: 14px;
+  opacity: 0.95;
+}
+
+.formMsg.ok { color: #0f766e; font-weight: 600; }
+.formMsg.err{ color: #b91c1c; font-weight: 600; }
+
+.formErrors {
+  margin-top: 10px;
+  border-radius: 10px;
+  padding: 0;
+}
+
+.formErrors ul {
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px solid #fecaca;
+  background: #fef2f2;
+  border-radius: 10px;
+}
+
+.formErrors li {
+  margin: 4px 0;
 }
 
 .meta {
@@ -88,15 +145,8 @@ textarea:focus {
   opacity: 0.95;
 }
 
-.submitMsg.ok {
-  color: #0f766e;
-  font-weight: 600;
-}
-
-.submitMsg.err {
-  color: #b91c1c;
-  font-weight: 600;
-}
+.submitMsg.ok { color: #0f766e; font-weight: 600; }
+.submitMsg.err{ color: #b91c1c; font-weight: 600; }
 
 .feedbackList {
   list-style: none;
@@ -167,7 +217,8 @@ body.dark .card {
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
 }
 
-body.dark textarea {
+body.dark textarea,
+body.dark input {
   background: #0b1220;
   color: #e5e7eb;
   border-color: #334155;
@@ -179,10 +230,13 @@ body.dark .feedbackList li {
   border-color: #334155;
 }
 
-body.dark .submitMsg.ok {
-  color: #5eead4;
+body.dark .formErrors ul {
+  border-color: #7f1d1d;
+  background: rgba(127, 29, 29, 0.15);
 }
 
-body.dark .submitMsg.err {
-  color: #fecaca;
-}
+body.dark .formMsg.ok,
+body.dark .submitMsg.ok { color: #5eead4; }
+
+body.dark .formMsg.err,
+body.dark .submitMsg.err { color: #fecaca; }
